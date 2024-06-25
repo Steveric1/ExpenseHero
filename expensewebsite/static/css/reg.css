@@ -1,0 +1,9 @@
+.showPasswordToggle {
+    font-size: 10px;
+    cursor: pointer;
+    transition: all;
+}
+
+.showPasswordToggle:hover {
+   transform: scale(1.2);
+}
