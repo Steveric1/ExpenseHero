@@ -3,12 +3,8 @@
 # Exit on error
 set -o errexit
 
-# Update and install system dependencies
-apt-get update
-apt-get install -y build-essential libffi-dev python3-dev
-
-# Clean up
-apt-get clean
+# Install system dependencies
+apt-get install --no-install-recommends -y build-essential libffi-dev python3-dev
 
 # Upgrade pip and install dependencies
 pip install --upgrade pip setuptools wheel
