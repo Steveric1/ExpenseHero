@@ -1,5 +1,5 @@
 asgiref==3.8.1
-backports.zoneinfo==0.2.1
+backports.zoneinfo==0.2.1; python_version < '3.9'
 dj-database-url==2.2.0
 Django==4.2.13
 # django-heroku==0.3.1
