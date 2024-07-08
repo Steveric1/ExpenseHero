@@ -4,18 +4,25 @@
 
 <div class="container mt-4">
 
+    <div class="row">
+        <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Edit Expenses</li>
+                </ol>
+            </nav>
+        </div>
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
-        </ol>
-    </nav>
+        <div class="col-md-2">
+            <a href="{% url 'expense-delete' expense.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
     
     <div class="card">
         
         <div class="card-body">
-            <form action="{% url 'add_expense' %}" method="post">
+            <form action="{% url 'expense_edit' expense.id  %}" method="post">
 
                 {% csrf_token %}
                 {% include 'partials/_messages.html' %}
@@ -46,7 +53,7 @@
                     <label for="">Category</label>
                     <select class="form-control" name="category">
                        {% for category in categories %}
-                       <option name="category" value="{{ category.name }}">
+                       <option name="category" valu e="{{ category.name }}" {% if category.name == values.category %}selected{% endif %}>
                         {{ category.name }}
                        </option>
                        {% endfor %}
@@ -56,11 +63,16 @@
                 <!--Date Of Expense-->
                 <div class="form-group mt-3">
                     <label for="">Date Of Expense</label>
-                    <input type="date" class="form-control form-control-sm" name="expense_date">
+                    <input 
+                    type="date" 
+                    class="form-control form-control-sm" 
+                    name="expense_date" 
+                    value="{{ values.date|date:'Y-m-d' }}"
+                    />
                 </div>
 
                 <!--Submit-->
-                <input type="submit" value="Submit" class="btn btn-primary btn-primary-sm mt-3">
+                <input type="submit" value="Save" class="btn btn-primary btn-primary-sm mt-3">
             </form>
         </div>
     </div>

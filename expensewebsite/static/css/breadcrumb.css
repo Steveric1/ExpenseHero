@@ -1,0 +1,24 @@
+/* breadcrumb.css */
+.breadcrumb {
+    background-color: #f8f9fa; /* Light background color for the breadcrumb */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.breadcrumb-item {
+    color: #007bff; /* Blue color for breadcrumb items */
+}
+
+.breadcrumb-item.active {
+    color: #6c757d; /* Gray color for the active breadcrumb item */
+}
+
+.breadcrumb-item a {
+    color: #007bff; /* Blue color for breadcrumb links */
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    color: #0056b3; /* Darker blue color for breadcrumb links on hover */
+    text-decoration: underline;
+}

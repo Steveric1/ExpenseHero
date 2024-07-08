@@ -15,6 +15,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <!-- Add this line in the <head> section of your HTML template -->
+    <link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
   </head>
   <body>    
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -82,10 +84,13 @@
       </button>
     </li>
   </ul>
-
-  <div id="navbarSearch" class="navbar-search w-100 collapse">
-    <input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
-  </div>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="">
+        ({{request.user.username}})
+      </a>
+    </li>
+  </ul>
 </header>
 
 <div class="container-fluid">

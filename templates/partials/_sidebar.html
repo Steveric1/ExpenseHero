@@ -14,13 +14,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
-              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'expenses' %}">
+              <svg class="bi"><use xlink:href="file-earmark"/></svg>
               Expenses
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'income' %}">
               <svg class="bi"><use xlink:href="#cart"/></svg>
               Income
             </a>
@@ -45,9 +45,9 @@
               Income Summary
             </a>
           </li>
+        </ul>
 
         <hr class="my-3">
-
         <ul class="nav flex-column mb-auto">
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="#">
@@ -55,6 +55,21 @@
               Settings
             </a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'preferences' %}">
+              <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
+              General
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
+              Account
+            </a>
+          </li>
+
           <li class="nav-item">
             <form method="post" action="{% url 'logout' %}">
               {% csrf_token %}
@@ -62,7 +77,7 @@
                 <svg class="bi"><use xlink:href="#door-closed"/></svg>
                 Sign out
               </button>
-          </form>
+            </form>
           </li>
         </ul>
       </div>

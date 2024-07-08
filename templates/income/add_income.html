@@ -7,15 +7,15 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
+          <li class="breadcrumb-item"><a href="{% url 'income' %}">Income</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Add Income</li>
         </ol>
     </nav>
     
     <div class="card">
         
         <div class="card-body">
-            <form action="{% url 'add_expense' %}" method="post">
+            <form action="{% url 'add-income' %}" method="post">
 
                 {% csrf_token %}
                 {% include 'partials/_messages.html' %}
@@ -43,11 +43,11 @@
 
                 <!--Category-->
                 <div class="form-group mt-3">
-                    <label for="">Category</label>
-                    <select class="form-control" name="category">
-                       {% for category in categories %}
-                       <option name="category" value="{{ category.name }}">
-                        {{ category.name }}
+                    <label for="">Sources</label>
+                    <select class="form-control" name="source">
+                       {% for source in sources %}
+                       <option name="source" value="{{ source.name }}">
+                        {{ source.name }}
                        </option>
                        {% endfor %}
                     </select>
@@ -55,8 +55,11 @@
 
                 <!--Date Of Expense-->
                 <div class="form-group mt-3">
-                    <label for="">Date Of Expense</label>
-                    <input type="date" class="form-control form-control-sm" name="expense_date">
+                    <label for="">Date Of Income</label>
+                    <input 
+                    type="date" 
+                    class="form-control form-control-sm"
+                    name="income_date">
                 </div>
 
                 <!--Submit-->
