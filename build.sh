@@ -5,14 +5,15 @@ set -o errexit
 
 # Update and install system dependencies
 apt-get update
-apt-get install -y build-essential libffi-dev
+apt-get install -y build-essential libffi-dev python3-dev
 
 # Clean up
 apt-get clean
-rm -rf /var/lib/apt/lists/*
 
+# Upgrade pip and install dependencies
 pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
 
-python manage.py collectstatic  --no-input
-python manage.py migrate 
+# Collect static files and run migrations
+python manage.py collectstatic --no-input
+python manage.py migrate
