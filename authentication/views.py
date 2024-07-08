@@ -11,7 +11,7 @@ from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeErr
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib import auth
-
+from django.conf import settings
 
 class RegistrationView(View):
     def get(self, request):
@@ -46,7 +46,8 @@ class RegistrationView(View):
                 # - token
 
                 uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-                domain = get_current_site(request).domain
+                # domain = get_current_site(request).domain
+                domain = settings.SITE_DOMAIN
                 link = reverse('activate',
                                kwargs={'uidb64': uidb64,
                                        'token': token_generator.make_token(user)}

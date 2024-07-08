@@ -1,28 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block content %}
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-10">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="">Expenses</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
                   <li class="breadcrumb-item active" aria-current="page">My Expenses</li>
                 </ol>
             </nav>
         </div>
-    
+
         <div class="col-md-2">
             <a href="{% url 'add_expense' %}" class="btn btn-primary">Add Expense</a>
+            
         </div>
+        
     </div>
 
+    {% include 'partials/_messages.html' %}
     <!--Table to display all expenses-->
     <div class="container">
 
-        {% if expenses.count %} {% include 'partials/_messages.html' %}
-
+        {% if expenses.count %}
         <div class="row">
             <div class="col-md-8"></div>
             <div class="col-md-4">
