@@ -25,7 +25,21 @@
             <input class="btn btn-outline-secondary" type="submit" value="Save" />
           </div>
     </form> 
+    <hr><br>
+    <div class="csv">
+      <h5>Download Expenses In CSV</h5>
+      <a href="{% url 'export_csv' %}" class="btn btn-primary">Export CSV</a>
+    </div><hr>
+    <div class="pdf">
+      <h5>Download Expenses In PDF</h5>
+      <a href="{% url 'export_pdf' %}" class="btn btn-primary">Export PDF</a>
+    </div><hr>
+    <div class="excel">
+      <h5>Download Expenses In EXCEL</h5>
+      <a href="{% url 'export_excel' %}" class="btn btn-primary">Export Excel</a>
+    </div>
     <hr/>
 </div>
+
 
 {% endblock content %}

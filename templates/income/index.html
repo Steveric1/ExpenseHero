@@ -2,6 +2,15 @@
 {% load static %}
 
 {% block content %}
+<style>
+    
+
+    td{
+        font-size: 13px;
+        background-color: aquamarine;
+    }
+</style>
+
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-10">
@@ -14,7 +23,7 @@
         </div>
     
         <div class="col-md-2">
-            <a href="{% url 'add-income' %}" class="btn btn-primary">Add Income</a>
+            <a href="{% url 'add-income' %}" class="btn btn-primary" style="color: rgb(4, 222, 106); background-color: #fff; border: 2px solid rgb(4, 222, 106); border-radius: 13px;">Add Income</a>
         </div>
     </div>
 
@@ -52,8 +61,20 @@
                             <td>{{income.description}}</td>
                             <td>{{income.date}}</td>
     
-                            <td><a href="{% url 'income_edit' income.id %}" 
-                                class="btn btn-secondary btn-sm">Edit</a></td>
+                            <td>
+                                <a href="{% url 'income_edit' income.id %}" 
+                                   class="btn btn-secondary btn-sm" 
+                                   style="color: rgb(4, 222, 106); background-color: #fff; border: 2px solid rgb(4, 222, 106); border-radius: 10px; padding: 2px 5px; font-size: 12px;">
+                                   Edit
+                                </a>
+                                <a href="{% url 'income-delete' income.id %}" 
+                                  class="btn btn-secondary btn-sm" 
+                                  style="color: rgb(255, 16, 16); background-color: #fff; border: 2px solid rgb(255, 16, 16); border-radius: 10px; padding: 2px 5px; font-size: 12px;"
+                                  data_url="{% url 'income-delete' income.id %}"
+                                  onclick="showDeleteModal(event, data_url);">
+                                  X
+                                </a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -105,5 +126,30 @@
 
 </div>
 
+<div class="chart-container mt-4">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div style="width: 400px; height: 400px;">
+                        <canvas id="myChart1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div style="width: 400px; height: 400px;">
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="{% static 'js/searchIncome.js' %}"></script>
+<script src="{% static 'js/incomeindexstats.js' %}"></script>
 {% endblock %}

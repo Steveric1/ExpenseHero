@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 import json
 from django.http import JsonResponse
+import datetime
 
 # Create your views here.
 
@@ -110,3 +111,61 @@ def income_delete(request, id):
     income.delete()
     messages.success(request, 'Record deleted successfully')
     return redirect('income')
+
+
+# User expense summary
+def income_source_summary(request):
+    todays_date = datetime.date.today()
+    six_months_ago = todays_date - datetime.timedelta(days=30*3)
+    income = UserIncome.objects.filter(owner=request.user,
+                                      date__gte=six_months_ago, date__lte=todays_date)
+
+    final_resp = {}
+
+    def get_source(income):
+        return income.source
+
+    source_list = list(set(map(get_source, income)))
+
+    def get_income_source_amount(source):
+        amount = 0
+        filtered_source = income.filter(source=source)
+
+        for item in filtered_source:
+            amount += item.amount
+
+        return amount
+
+    for x in income:
+        for y in source_list:
+            final_resp[y] = get_income_source_amount(y)
+
+    return JsonResponse({'income_source_data': final_resp}, safe=False)
+
+
+def income_source_trend(request):
+    todays_date = datetime.date.today()
+    three_months_ago = todays_date - datetime.timedelta(days=90)
+    incomes = UserIncome.objects.filter(
+        owner=request.user, date__gte=three_months_ago, date__lte=todays_date)
+    
+    source_trend = {}
+    
+    unique_sources = list(set(income.source for income in incomes))
+    
+    # Initialize the source_trend dictionary with dates and sources
+    for income in incomes:
+        month = income.date.strftime("%Y-%m-%d")
+        if month not in source_trend:
+            source_trend[month] = {source: 0 for source in unique_sources}
+    
+    # Fill the dictionary with cumulativecome
+    for income in incomes:
+        month = income.date.strftime("%Y-%m-%d")
+        source_trend[month][income.source] += income.amount
+    
+    return JsonResponse({'source_trend': source_trend}, safe=False)
+
+
+def income_stats_view(request):
+    return render(request, "income/stats.html")

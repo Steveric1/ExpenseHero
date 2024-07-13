@@ -5,18 +5,13 @@
 <div class="container mt-4">
 
     <div class="row">
-        <div class="col-md-10">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="{% url 'income' %}">Income</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Edit Income</li>
-                </ol>
-            </nav>
-        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'income' %}">Income</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Edit Income</li>
+            </ol>
+        </nav>
 
-        <div class="col-md-2">
-            <a href="{% url 'income-delete' income.id %}" class="btn btn-danger">Delete</a>
-        </div>
     </div>
     
     <div class="card">

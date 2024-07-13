@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ExpenseHero</title>
+	</head>
+	<style>
+		@page {
+			size: "A4";
+			margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+
+			@top-center {
+				content: "Download from expensehero.com";
+                font-size: 13px;
+                color: #333;
+			}
+
+            @bottom-center {
+                content: "Download from expensehero.com";
+                font-size: 13px;
+                color: #333;
+            }
+
+			@bottom-right {
+				content: "Page" counter(page) " of " counter(pages);
+			}
+		}
+
+		.exp {
+			/* text-align: center; */
+			size: 1px;
+			text-decoration: underline;
+		}
+
+		.logo {
+            display: block;
+            margin: 0 auto;
+			width: 120px;
+			height: 120px;
+		}
+	</style>
+	<body>
+		<img
+			src="https://drive.google.com/uc?export=view&id=1ZWamTh1CMWthB8mEaN_NQ7V-DodjeHCO"
+			class="logo"
+		/>
+
+		<h3 class="exp">List Of Expenses</h3>
+		<table>
+			<thead>
+				<th>No</th>
+				<th>Amount</th>
+				<th>Category</th>
+				<th>Description</th>
+				<th>Date</th>
+                
+			</thead>
+
+			<tbody>
+				{% for expense in expenses %}
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td>{{expense.amount}}</td>
+					<td>{{expense.category}}</td>
+					<td>{{expense.description}}</td>
+					<td>{{expense.date}}</td>
+				</tr>
+				{% endfor %}
+                
+				<tr>
+					<td>Total</td>
+					<td>{{total}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

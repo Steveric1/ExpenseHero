@@ -1,0 +1,30 @@
+#header {
+    display: flex;
+    background: rgb(91, 97, 136);
+    color: #fff;
+    align-items: center;
+    font-size: 30px;
+    padding: 10px;
+}
+
+#branding h1 {
+    color: #fff;
+}
+
+
+div.breadcrumbs {
+    background: rgb(61, 138, 128);
+    color: #fff;
+}
+
+
+.module h2, .module caption, .inline-group h2 {
+    background: rgb(91, 97, 136);
+}
+
+input[type=submit], input[type=button], .submit-row input {
+    background: rgb(91, 97, 136);
+    color: #fff;
+    width: 100%;
+}
+

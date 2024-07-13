@@ -1,50 +1,55 @@
-
 {% extends 'base_auth.html' %}
 {% load static %}
 
 {% block content %}
 
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <div class="card mt-5">
-            <div class="card-body">
-                <div class="card-title py-3">
-                    <h4>Login to your account</h4>
+
+<div class="centered-container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="card login-card">
+                <div class="card-body">
+                    <div class="card-title py-3">
+                        <h4>Login to your account</h4>
+                    </div>
+                    <form action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                        {% include 'partials/_messages.html' %}
+                        <div class="form-group mb-3">
+                            <input 
+                            type="text" 
+                            name="username"
+                            placeholder="Username"
+                            id="usernamefield" 
+                            value="{{ fieldValues.username }}"
+                            class="form-control form-control-sm" 
+                            />
+                        </div>
+                 
+                        <div class="form-group mb-3">
+                            <input 
+                            type="password" 
+                            name="password"
+                            placeholder="Password"
+                            id="passwordField" 
+                            class="form-control form-control-sm" 
+                            />
+                        </div>
+                        <div class="justify-content-center submit-btn">
+                            <input type="submit" value="Login" class="btn btn-primary w-100" style="border-radius: 15px;"/>
+                        </div>
+                    </form>
+
+                    <div class="container">
+                        <span class="text-lead lead" style="font-size: 16px; " >Don't have an account?</span><a href="{% url 'register' %}"> Register</a><br>
+                        <span class="text-lead lead" style="font-size: 16px; ">Forgot Password?</span><a href="{% url 'reset-password' %}"> Reset</a>
+                    </div>
                 </div>
-                <form action="{% url 'login' %}" method="post">
-                    {% csrf_token %}
-                    {% include 'partials/_messages.html' %}
-                    <div class="form-group mb-3">
-                        <input 
-                        type="text" 
-                        name="username"
-                        placeholder="Username"
-                        id="usernamefield" 
-                        value="{{ fieldValues.username }}"
-                        class="form-control form-control-sm" 
-                        />
-                    </div>
-             
-                    <div class="form-group mb-3">
-                        <input 
-                        type="password" 
-                        name="password"
-                        placeholder="Password"
-                        id="passwordField" 
-                        class="form-control form-control-sm" 
-                        />
-                    </div>
-                    <div class="justify-content-center submit-btn">
-                        <input type="submit" value="Login" class="btn btn-primary w-100" />
-                    </div>
-                </form>
             </div>
         </div>
     </div>
-    <div class="col-md-4"></div>
 </div>
 
 <script src="{% static 'js/register.js' %}"></script>
 
-{% endblock content %} 
+{% endblock content %}

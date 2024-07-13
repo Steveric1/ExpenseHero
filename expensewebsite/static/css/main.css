@@ -38,6 +38,11 @@
 } */
 
 
+.user-color:hover a {
+  color: rgb(23, 237, 130); /* Change to desired hover color */
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;

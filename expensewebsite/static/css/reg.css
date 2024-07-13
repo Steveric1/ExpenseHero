@@ -7,3 +7,29 @@
 .showPasswordToggle:hover {
    transform: scale(1.2);
 }
+
+
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-card {
+    width: 420px;
+    max-width: 600px;
+}
+
+
+@media (min-width: 32px) and (max-width: 520px) {
+    .centered-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .login-card {
+        width: 100%;
+        max-width: 600px;
+    }
+}

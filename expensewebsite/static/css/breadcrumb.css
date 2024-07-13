@@ -22,3 +22,14 @@
     color: #0056b3; /* Darker blue color for breadcrumb links on hover */
     text-decoration: underline;
 }
+
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addexpense a{
+    background-color: greenyellow;
+}

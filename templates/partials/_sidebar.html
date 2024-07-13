@@ -15,7 +15,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="{% url 'expenses' %}">
-              <svg class="bi"><use xlink:href="file-earmark"/></svg>
+              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
               Expenses
             </a>
           </li>
@@ -34,13 +34,13 @@
         </h6>
         <ul class="nav flex-column mb-auto">
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'stats' %}">
               <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
               Expenses Summary
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'income_stats' %}">
               <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
               Income Summary
             </a>
@@ -50,25 +50,25 @@
         <hr class="my-3">
         <ul class="nav flex-column mb-auto">
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'preferences' %}">
               <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
               Settings
             </a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="{% url 'preferences' %}">
               <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
               General
             </a>
-          </li>
+          </li> -->
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="#">
               <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
               Account
             </a>
-          </li>
+          </li> -->
 
           <li class="nav-item">
             <form method="post" action="{% url 'logout' %}">
