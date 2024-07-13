@@ -1,30 +1,35 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
+from django.contrib.auth.decorators import login_required
 import os
 import json
 from django.conf import settings
 from .models import UserPreference
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 # Create your views here.
+@login_required(login_url='login')
 def index(request):
-    exist =  UserPreference.objects.filter(user=request.user).exists()
+    """Function to handle user preferences"""
+    exist = UserPreference.objects.filter(user=request.user).exists()
     user_preferences = None
-    
+
     if exist:
         user_preferences = UserPreference.objects.get(user=request.user)
-    
+
     if request.method == 'GET':
         currency_data = []
         file_path = os.path.join(settings.BASE_DIR, 'currencies.json')
-     
+
         with open(file_path, 'r') as file_json:
             data = json.load(file_json)
             for key, value in data.items():
                 currency_data.append({'name': key, 'value': value})
         return render(request, 'preferences/index.html', {
             'currencies': currency_data,
-            'user_preferences': user_preferences
+            'user_preferences': user_preferences,
+            'user_id': request.user.id
         })
     else:
         currency = request.POST['currency']
@@ -35,3 +40,17 @@ def index(request):
             UserPreference.objects.create(user=request.user, currency=currency)
         messages.success(request, 'Changes saved!')
         return redirect('preferences')
+
+
+@login_required(login_url='login')
+def user_delete_account(request, id):
+    """Function to delete user account"""
+    if request.user.id != id and not request.user.is_staff:
+        messages.error(
+            request, "You do not have permission to delete this account.")
+        return redirect('preferences')
+
+    current_user = get_object_or_404(User, pk=id)
+    current_user.delete()
+    messages.success(request, "Account deleted successfully!")
+    return redirect('login')

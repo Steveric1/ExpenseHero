@@ -38,7 +38,17 @@
       <h5>Download Expenses In EXCEL</h5>
       <a href="{% url 'export_excel' %}" class="btn btn-primary">Export Excel</a>
     </div>
-    <hr/>
+    <hr/><br>
+
+    <div class="delete-account" style="display: float; float: right; padding-bottom: 15px;">
+      <h5>Delete Account</h5>
+      <a 
+       href="{% url 'delete_account' user_id %}" 
+       class="btn btn-primary" 
+       style="background-color: rgb(217, 22, 22); border-radius: 10px; border: 2px solid red;">
+        Delete Account
+      </a>
+    </div><br>
 </div>
 
 
