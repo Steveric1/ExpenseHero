@@ -9,6 +9,40 @@
         font-size: 13px;
         background-color: aquamarine;
     }
+
+    /* Modal styling */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 </style>
 
 
@@ -31,7 +65,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 
 
 <div class="container mt-4">
@@ -92,11 +126,12 @@
                                    style="color: rgb(4, 222, 106); background-color: #fff; border: 2px solid rgb(4, 222, 106); border-radius: 10px; padding: 2px 5px; font-size: 12px;">
                                    Edit
                                 </a>
-                                <a href="{% url 'expense-delete' expense.id %}" 
-                                  class="btn btn-secondary btn-sm" 
+                                <meta name="csrf-token" content="{{ csrf_token }}">
+                                <a 
+                                  href="{% url 'expense-delete' expense.id %}"
+                                  class="btn btn-secondary btn-sm delete-btn" 
                                   style="color: rgb(255, 16, 16); background-color: #fff; border: 2px solid rgb(255, 16, 16); border-radius: 10px; padding: 2px 5px; font-size: 12px;"
-                                  data_url="{% url 'expense-delete' expense.id %}"
-                                  onclick="showDeleteModal(event, data_url);">
+                                  onclick="showDeleteModal(event, `{{ expense.id }}`);">
                                   X
                                 </a>
                             </td>
@@ -181,23 +216,9 @@
     </div>
 </div>
 
-<script>
-    // Variable to store the delete URL
-    let deleteUrl = "/expense-delete";
 
-    // Show confirmation dialog
-    function showDeleteModal(event, url="/expense-delete") {
-        event.preventDefault();
-        deleteUrl = url; // Store the delete URL
-        $('#deleteModal').modal('show'); // Show the modal
-    }
 
-    // Handle the confirm delete button click
-    document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
-        window.location.href = deleteUrl; // Redirect to the delete URL
-    });
-</script>
-
+<script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'js/searchExpenses.js' %}"></script>
 <script src="{% static 'js/indexstats.js' %}"></script>
 

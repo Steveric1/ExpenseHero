@@ -139,6 +139,10 @@ class LoginView(View):
         return render(request, 'authentication/login.html')
 
     def post(self, request):
+        context = {
+            'fieldValues': request.POST
+        }
+        
         username = request.POST.get('username')
         password = request.POST.get('password')
 
@@ -154,13 +158,13 @@ class LoginView(View):
                 else:
                     messages.error(
                         request, 'Account is not activated, please check your email')
-                    return render(request, 'authentication/login.html')
+                    return render(request, 'authentication/login.html', context)
 
             messages.error(request, 'Invalid creditials, try again')
-            return render(request, 'authentication/login.html')
+            return render(request, 'authentication/login.html', context)
 
         messages.error(request, 'Please fill all fields')
-        return render(request, 'authentication/login.html')
+        return render(request, 'authentication/login.html', context)
 
 
 class LogoutView(View):

@@ -13,6 +13,8 @@ from django.template.loader import render_to_string
 from weasyprint import HTML
 import tempfile
 from django.db.models import Sum
+from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -112,11 +114,15 @@ def expense_edit(request, id):
 
 
 @login_required(login_url='login')
+@csrf_exempt
 def expense_delete(request, id):
-    expense = Expense.objects.get(pk=id)
-    expense.delete()
-    messages.success(request, 'Expense deleted successfully')
-    return redirect('expenses')
+    if request.method == "DELETE":
+        expense = get_object_or_404(Expense, pk=id)
+        expense.delete()
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
+    
 
 
 # User expense summary

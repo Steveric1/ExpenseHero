@@ -33,7 +33,7 @@ const renderChart = (labels, data) => {
         plugins: {
             title: {
                 display: true,
-                text: 'Expense per category'
+                text: 'Income per source'
             }
         }
     }

@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect,  get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 import os
 import json
 from django.conf import settings
 from .models import UserPreference
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import logout
 
 
 # Create your views here.
@@ -43,14 +46,18 @@ def index(request):
 
 
 @login_required(login_url='login')
+@csrf_exempt
 def user_delete_account(request, id):
     """Function to delete user account"""
     if request.user.id != id and not request.user.is_staff:
         messages.error(
             request, "You do not have permission to delete this account.")
         return redirect('preferences')
-
-    current_user = get_object_or_404(User, pk=id)
-    current_user.delete()
-    messages.success(request, "Account deleted successfully!")
-    return redirect('login')
+    
+    if request.method == "DELETE":
+        current_user = get_object_or_404(User, pk=id)
+        current_user.delete()
+        logout(request)
+        return JsonResponse({'success': True}, status=204)
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)

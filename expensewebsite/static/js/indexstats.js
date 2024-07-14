@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				labels: labels,
 				datasets: [
 					{
-						label: "Distribution per category (last 3 months)",
+						label: labels,
 						data: data,
 						backgroundColor: [
 							"rgb(255, 99, 132)",

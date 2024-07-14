@@ -7,6 +7,8 @@ from django.contrib import messages
 import json
 from django.http import JsonResponse
 import datetime
+from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -106,12 +108,14 @@ def income_edit(request, id):
 
 
 @login_required(login_url='login')
+@csrf_exempt
 def income_delete(request, id):
-    income = UserIncome.objects.get(pk=id)
-    income.delete()
-    messages.success(request, 'Record deleted successfully')
-    return redirect('income')
-
+    if request.method == "DELETE":
+        income = get_object_or_404(UserIncome, pk=id)
+        income.delete()
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
 
 # User expense summary
 def income_source_summary(request):
