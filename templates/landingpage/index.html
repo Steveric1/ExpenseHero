@@ -1,0 +1,254 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>ExpenseHero</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap1.min.css' %}" rel="stylesheet" />
+
+    <!-- Favicons -->
+<meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      .container {
+            margin-top: 50px;
+        }
+        .section-title {
+            margin-bottom: 30px;
+        }
+        .section-content {
+            margin-bottom: 50px;
+        }
+        .feature {
+            margin-bottom: 20px;
+        }
+      
+      #myCarousel {
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .mynav {
+        float: left !important;
+      }
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <!-- <a class="navbar-brand" href="#">ExpenseHero</a> -->
+      <div id="head" class="navbar-brand">
+        <img src="{% static 'img/logo3.png' %}" width="65" height="65" class="logo"/>
+        ExpenseHero
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'landing-page' %}">Home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}" style="color: white; text-decoration: none;">Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'expenses' %}" style="color: white; text-decoration: none;">Dashboard</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<main>
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Manage Your Expenses</h1>
+            <p>Track and categorize your expenses effortlessly.</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'register' %}">Get Started</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Expense Comparison</h1>
+            <p>A visual chart to compare your budget and track how you are spending each day.</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'expenses' %}">Learn More</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>Generate Reports</h1>
+            <p>Analyze your spending with detailed reports.</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'preferences' %}">View Reports</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <div class="container">
+    <section class="section-content" id="about">
+      <div class="card bg-light mb-3">
+          <div class="card-body">
+              <h1 class="card-title">ExpenseHero</h1>
+              <p class="card-text">Welcome to ExpenseHero, your ultimate solution for efficient expense management. Whether you're an individual looking to keep track of your daily spending or a business aiming to streamline financial operations, ExpenseHero offers a comprehensive suite of features designed to meet your needs.</p>
+          </div>
+      </div>
+  </section>
+
+    <section class="section-content">
+      <div class="card bg-light mb-3">
+        <div class="card-body">
+          <h2 class="section-title">Why Choose ExpenseHero?</h2>
+          <p><strong>Easy to Use:</strong> Our user-friendly design ensures a smooth experience, even for those who are not tech-savvy.</p>
+          <p><strong>Customizable:</strong> Tailor the application to fit your unique financial needs and preferences.</p>
+          <p><strong>Reliable Support:</strong> Our dedicated support team is always ready to assist you with any questions or issues.</p>
+          <p><strong>Secure and Private:</strong> We prioritize your privacy and security. Your data is protected with the highest standards of encryption.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section-content">
+      <div class="card bg-light mb-3">
+        <div class="card-body">
+          <h2 class="section-title">Join Us</h2>
+          <p>Join thousands of satisfied users who have taken control of their finances with ExpenseHero. Whether you're budgeting for a vacation, managing household expenses, or overseeing business finances, ExpenseHero is here to help you succeed.</p>
+        </div>
+      </div>
+    </section>
+</div><hr>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-4 text-center">
+        <img src="{% static 'img/mypicture.jpg' %}" class="rounded-circle" width="300" height="300" alt="Your Picture">
+    
+        <h2>Developer</h2>
+        <p>I'm Eric, a DevOps/Full-Stack Engineer and the developer of this website, ExpenseHero.
+          I developed both the backend and the frontend of this website. 
+          You can connect with me on Twitter by clicking the button below.</p>
+        <p><a class="btn btn-secondary" href="https://x.com/_steveric">Connect with me!</a></p>
+      </div>
+    </div>
+    
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Expense Tracking. <span class="text-muted">Keep an eye on your spending.</span></h2>
+        <p class="lead">Our powerful tracking feature helps you log all your expenses effortlessly, ensuring you never miss a single transaction. Monitor your daily, weekly, and monthly expenses with ease.</p>
+      </div>
+      <div class="col-md-5">
+        <img src="{% static 'img/tracking2.jpg' %}" class="featurette-image img-fluid mx-auto" width="500" height="500" alt="Expense Tracking">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Detailed Reports. <span class="text-muted">Analyze your spending patterns.</span></h2>
+        <p class="lead">Gain insights into your financial habits with our comprehensive reports. 
+          Visualize your spending across various categories and time periods, helping you make informed financial decisions. 
+        And export them to pdf, csv or excel.</p>
+      </div>
+      <div class="col-md-5  order-md-1">
+        <img src="{% static 'img/report2.png' %}" class="featurette-image img-fluid mx-auto" width="500" height="500" alt="Detailed Reports">
+      </div>
+    </div>
+
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Secure Data Storage. <span class="text-muted">Your data, safe and sound.</span></h2>
+        <p class="lead">We prioritize your privacy and security. All your financial data is securely stored and encrypted, giving you peace of mind that your information is protected.</p>
+      </div>
+      <div class="col-md-5">
+        <img src="{% static 'img/expense-storage.jpg' %}" class="featurette-image img-fluid mx-auto" width="500" height="500" alt="Secure Data Storage">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-end"><a href="#">Back to top</a></p>
+    <p>&copy; 2024 ExpenseHero, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+</main>
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+      
+  </body>
+</html>

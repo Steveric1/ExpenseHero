@@ -185,6 +185,7 @@ def stats_view(request):
 
 
 # View that implement how to download expsenses in csv
+@login_required(login_url='login')
 def export_csv(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=Expenses' + \
@@ -201,9 +202,10 @@ def export_csv(request):
 
     return response
 
+
+
 # View that implement how to download expsenses in excel
-
-
+@login_required(login_url='login')
 def export_excel(request):
     response = HttpResponse(content_type='application/ms-excel')
     response['Content-Disposition'] = 'attachement; filename=Expenses' + \
@@ -235,6 +237,7 @@ def export_excel(request):
     return response
 
 
+@login_required(login_url='login')
 def export_pdf(request):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'inline; filename=Expenses_' + \

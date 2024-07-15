@@ -75,6 +75,7 @@ class RegistrationView(View):
                                  recipient_list).start()
 
                 messages.success(request, 'Account created successfully')
+                messages.info(request, 'Click the link sent to your email to verify your account')
                 return render(request, 'authentication/register.html')
 
         return render(request, 'authentication/register.html')
