@@ -9,6 +9,9 @@
         height: 1.5em; /* Increase the size of the icon */
         fill: currentColor; /* Inherits the color from the parent */
     }
+    .form-control::placeholder {
+        opacity: 0.3;
+    }
 </style>
 
 <div style="display: none;">
@@ -48,7 +51,7 @@
                             placeholder="Username"
                             id="usernamefield" 
                             value="{{ fieldValues.username }}"
-                            class="form-control form-control-sm" 
+                            class="form-control form-control-sm"
                             />
                         </div>
                  
