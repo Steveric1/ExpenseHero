@@ -3,6 +3,32 @@
 
 {% block content %}
 
+<style>
+    .bi {
+        width: 1.5em;  /* Increase the size of the icon */
+        height: 1.5em; /* Increase the size of the icon */
+        fill: currentColor; /* Inherits the color from the parent */
+    }
+</style>
+
+<div style="display: none;">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <symbol id="house-fill" viewBox="0 0 16 16">
+            <path d="M8 .5l-6 6V15h12V6.5l-6-6zM7 13V9h2v4H7zm4-1.293l-1-1V9h-2v1.707l-1 1V6.5L8 3.5l3 3v5.207z"/>
+        </symbol>
+    </svg>
+</div>
+
+<div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{% url 'landing-page' %}">
+            <svg class="bi"><use xlink:href="#house-fill"/></svg>
+            Home
+          </a>
+        </li>
+    </ul>
+</div>
 
 <div class="centered-container">
     <div class="row">

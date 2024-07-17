@@ -153,3 +153,34 @@ function showUserDeleteModal(event, userId) {
         }
     });
 }
+
+
+// Function to notify user at the registeration that an email has ben sent to them
+ document.addEventListener('DOMContentLoaded', (event) => {
+            const register = document.getElementById('register');
+            const form = document.getElementById('formId');
+
+            if (register && form) {
+                console.log("Register button and form found");
+                register.addEventListener('click', (event) => {
+                    if (form.checkValidity()) {
+                        event.preventDefault();
+                        Swal.fire({
+                            title: 'Email Sent!',
+                            text: 'An email has been sent to you. Please use the link sent to your mail to verify your account.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                form.submit();
+                            }
+                        });
+                    } else {
+                        console.log("Form is not valid");
+                        form.reportValidity();
+                    }
+                });
+            } else {
+                console.log("Register button or form not found");
+            }
+        });

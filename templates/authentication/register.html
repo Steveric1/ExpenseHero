@@ -12,7 +12,7 @@
                     <div class="card-title py-3">
                         <h4>Register for free account</h4>
                     </div>
-                    <form action="{% url 'register' %}" method="post">
+                    <form action="{% url 'register' %}" method="post" id="formId">
                         {% csrf_token %}
                         {% include 'partials/_messages.html' %}
                         <div class="form-group mb-3">
@@ -55,7 +55,7 @@
                            <small class="float-end py-3 showPasswordToggle ">SHOW</small>
                         </div>
                         <div class="justify-content-center submit-btn">
-                            <input type="submit" value="Register" class="btn btn-primary w-100" style="border-radius: 15px;"/>
+                            <input type="submit" value="Register" class="btn btn-primary w-100" id="register" style="border-radius: 15px;"/>
                         </div>
                     </form>
 
@@ -69,6 +69,7 @@
 </div>
 
 
+<!-- <script src="{% static 'js/main.js' %}"></script> -->
 <script src="{% static 'js/register.js' %}"></script>
 
 {% endblock content %} 
