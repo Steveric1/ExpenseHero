@@ -245,7 +245,7 @@ def export_pdf(request):
     response['Content-Transfer-Encoding'] = 'binary'
 
     expenses = Expense.objects.filter(owner=request.user)
-    total_amount = Expense.objects.aggregate(Sum('amount'))
+    total_amount = expenses.aggregate(Sum('amount'))
 
     html_string = render_to_string(
         'expenses/output-pdf.html', {'expenses': expenses, 'total': total_amount['amount__sum']})
