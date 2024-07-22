@@ -23,5 +23,31 @@ ExpenseHero is built using a modern web architecture that ensures scalability, m
 
 - PostgreSQL: Used as the main relational database for storing user data and other structured data. 
 
- 
 
+## How To Deploy ExpenseHero On Your Local Machine
+
+git clone https://github.com/Steveric1/ExpenseHero.git
+
+#### Create an environ
+
+python3 -m venv venv
+
+#### Activate your environ
+source venv/bin/activate
+
+#### Download ExpenseHero application requirement dependencies
+
+pip install -r requirements.txt
+
+#### Use the below command to start your server to view ExpenseHero on your own browser
+
+python3 manage.py runserver
+
+#### Click on the below link to view ExpenseHero page - (deploy render.com)
+
+https://expensehero.onrender.com/
+
+#### Thanks 
+##### Let connect and discuss my exciting new project
+- X https://x.com/_steveric
+- LinkedIn https://www.linkedin.com/in/steve-eric-517993245/
