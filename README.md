@@ -1,11 +1,11 @@
 ## ExpenseHero
 
- ExpenseHero is a comprehensive web application designed to assist users in managing their finances, specifically focusing on tracking expenses and income. With ExpenseHero, users can gain a clear understanding of their financial situation through detailed visualizations and reporting capabilities. 
+ *ExpenseHero is a comprehensive web application designed to assist users in managing their finances, specifically focusing on tracking expenses and income. With ExpenseHero, users can gain a clear understanding of their financial situation through detailed visualizations and reporting capabilities.*
 
 
 ##  Project Architecture and Technologies Used 
 
-ExpenseHero is built using a modern web architecture that ensures scalability, maintainability, and performance. The architecture includes frontend, backend, and database. 
+*ExpenseHero is built using a modern web architecture that ensures scalability, maintainability, and performance. The architecture includes frontend, backend, and database.*
 
  
 
