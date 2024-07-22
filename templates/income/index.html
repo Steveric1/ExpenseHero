@@ -18,7 +18,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0;
+        padding: 15px;
    }
    
    .index {
@@ -29,6 +29,12 @@
     canvas {
         width: 100% !important;
         height: auto !important;
+    }
+
+    .chartTitle {
+        font-size: 15px;
+        text-align: center;
+        font-style: italic;
     }
 
 </style>
@@ -154,6 +160,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="index">
+                        <h5 class="chartTitle">Distribution per source (last 3 months)</h5>
                         <canvas id="myChart1"></canvas>
                     </div>
                 </div>
@@ -164,6 +171,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="index">
+                        <h5 class="chartTitle">Source Cumulative Comparison (Last 3 Months)</h5>
                         <canvas id="myChart2"></canvas>
                     </div>
                 </div>

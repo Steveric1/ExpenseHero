@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				plugins: {
 					title: {
 						display: true,
-						text: "Distribution per category (last 3 months)",
+						text: "Distribution per category (last 3 months)"
 					},
 				},
 			},
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				plugins: {
 					title: {
 						display: true,
-						text: "Category Cumulative Comparison (Last 3 Months)",
+						text: "Category Cumulative Comparison (Last 3 Months)"
 					},
 				},
 			},
