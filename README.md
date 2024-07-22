@@ -5,7 +5,7 @@
 
 ##  Project Architecture and Technologies Used 
 
-#### ExpenseHero is built using a modern web architecture that ensures scalability, maintainability, and performance. The architecture includes frontend, backend, and database. 
+ExpenseHero is built using a modern web architecture that ensures scalability, maintainability, and performance. The architecture includes frontend, backend, and database. 
 
  
 
