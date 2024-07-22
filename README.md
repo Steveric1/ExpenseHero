@@ -26,7 +26,7 @@ ExpenseHero is built using a modern web architecture that ensures scalability, m
 
 ## How To Deploy ExpenseHero On Your Local Machine
 
-git clone https://github.com/Steveric1/ExpenseHero.git
+. git clone https://github.com/Steveric1/ExpenseHero.git
 
 #### Create an environ
 
