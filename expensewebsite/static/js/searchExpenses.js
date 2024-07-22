@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (searchVal.trim().length > 0) {
 			pagination.style.display = "none";
 			tableBody.innerHTML = " ";
-			fetch("/search-expenses", {
+			fetch("search-expenses", {
 				body: JSON.stringify({ searchText: searchVal }),
 				method: "POST",
 			})

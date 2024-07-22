@@ -11,5 +11,12 @@ urlpatterns = [
     path('search-income', csrf_exempt(views.search_income), name="search-income"),
     path('income_source_summary', views.income_source_summary, name="income_source_summary"),
     path('income_source_trend', views.income_source_trend, name="income_source_trend"),
-    path('income_stats', views.income_stats_view, name="income_stats")
+    path('income_stats', views.income_stats_view, name="income_stats"),
+    path('income_by_month', views.income_by_month, name="income_by_month"),
+    path('income_by_week', views.income_by_week, name="income_by_week"),
+    path('total_income_of_the_day', views.total_income_of_the_day, name="total_income_of_the_day"),
+    path('total_income_of_the_day', views.total_income_of_the_day, name="total_income_of_the_day"),
+    path('total_income_of_the_week', views.total_income_of_the_week, name="total_income_of_the_week"),
+    path('total_income_of_the_month', views.total_income_of_the_month, name="total_income_of_the_month"),
+    path('total_income_of_the_year', views.total_income_of_the_year, name="total_income_of_the_year")
 ] 

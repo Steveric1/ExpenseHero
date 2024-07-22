@@ -42,10 +42,6 @@ class RegistrationView(View):
         # Check if user or email exist
         if not User.objects.filter(username=username).exists():
             if not User.objects.filter(email=email).exists():
-                # Check the length of the password
-                if password and len(password) < 6:
-                    messages.error(request, 'Password too short')
-                    return render(request, 'authentication/register.html', context)
                 user = User.objects.create_user(username=username, email=email)
                 user.set_password(password)
                 user.is_active = False
@@ -75,7 +71,6 @@ class RegistrationView(View):
                                  recipient_list).start()
 
                 messages.success(request, 'Account created successfully')
-                # messages.info(request, 'Click the link sent to your email to verify your account')
                 return render(request, 'authentication/register.html')
 
         return render(request, 'authentication/register.html')
@@ -106,6 +101,15 @@ class EmailValidationView(View):
             return JsonResponse({'email_error': 'sorry email is taken!'}, status=409)
         return JsonResponse({'email_valid': True})
 
+
+# Password Validation
+class PasswordValidation(View):
+    def post(self, request):
+        data = json.loads(request.body)
+        password = data.get('password')
+        if len(password) < 6:
+            return JsonResponse({'password_error': 'Password too short'}, status=400)
+        return JsonResponse({'password_valid': True})
 
 class VerificationView(View):
     """verification view """

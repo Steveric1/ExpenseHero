@@ -117,7 +117,7 @@ def income_delete(request, id):
     else:
         return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
 
-# User expense summary
+# User income summary
 def income_source_summary(request):
     todays_date = datetime.date.today()
     six_months_ago = todays_date - datetime.timedelta(days=30*3)
@@ -169,6 +169,107 @@ def income_source_trend(request):
         source_trend[month][income.source] += income.amount
     
     return JsonResponse({'source_trend': source_trend}, safe=False)
+
+
+def income_by_month(request):
+    todays_date = datetime.date.today()
+    start_of_year = datetime.date(todays_date.year, 1, 1)
+    income = UserIncome.objects.filter(
+        owner=request.user, date__gte=start_of_year, date__lte=todays_date)
+
+    # Initialize a dictionary for the monthly totals
+    monthly_income = {month: 0 for month in range(1, 13)}
+
+    # Aggregate the income by month
+    for income in income:
+        month = income.date.month
+        monthly_income[month] += income.amount
+
+    # Format the result as a list of totals for each month
+    monthly_totals = [monthly_income[month] for month in range(1, 13)]
+
+    return JsonResponse({'monthly_totals': monthly_totals}, safe=False)
+
+
+def income_by_week(request):
+    todays_date = datetime.date.today()
+    year, week, _ = todays_date.isocalendar()
+
+    # Calculate the start and end of the current week
+    start_of_week = datetime.date.fromisocalendar(year, week, 1)
+    end_of_week = start_of_week + datetime.timedelta(days=6)
+
+    income = UserIncome.objects.filter(
+        owner=request.user, date__gte=start_of_week, date__lte=end_of_week)
+    # Initialize a dictionary for the weekly totals
+    weekly_income = {day: 0 for day in range(1, 8)}
+
+    # Aggregate the income by day
+    for income in income:
+        day = income.date.isoweekday()
+        weekly_income[day] += income.amount
+
+    # Format the result as a list of totals for each day
+    weekly_totals = [weekly_income[day] for day in range(1, 8)]
+
+    return JsonResponse({'weekly_totals': weekly_totals}, safe=False)
+
+
+def total_income_of_the_day(request):
+    todays_date = datetime.date.today()
+    income = UserIncome.objects.filter(owner=request.user, date=todays_date)
+
+    total_income = 0
+    for income in income:
+        total_income += income.amount
+
+    return JsonResponse({'today_total_income': total_income}, safe=False)
+
+
+def total_income_of_the_week(request):
+    todays_date = datetime.date.today()
+    year, week, _ = todays_date.isocalendar()
+
+    start_of_week = datetime.date.fromisocalendar(year, week, 1)
+    end_of_week = start_of_week + datetime.timedelta(days=6)
+
+    income = UserIncome.objects.filter(
+        owner=request.user, date__gte=start_of_week, date__lte=end_of_week)
+
+    total_week_income = 0
+
+    for income in income:
+        total_week_income += income.amount
+
+    return JsonResponse({'total_week_income': total_week_income}, safe=False)
+
+
+def total_income_of_the_month(request):
+    todays_date = datetime.date.today()
+    month = todays_date.month
+    year = todays_date.year
+    income = UserIncome.objects.filter(
+        owner=request.user, date__year=year, date__month=month)
+
+    total_month_income = 0
+
+    for income in income:
+        total_month_income += income.amount
+
+    return JsonResponse({'total_month_income': total_month_income}, safe=False)
+
+
+def total_income_of_the_year(request):
+    todays_date = datetime.date.today()
+    year = todays_date.year
+    income = UserIncome.objects.filter(owner=request.user, date__year=year)
+    
+    total_year_income = 0
+    
+    for income in income:
+        total_year_income += income.amount
+    
+    return JsonResponse({'total_year_income': total_year_income}, safe=False)
 
 
 def income_stats_view(request):

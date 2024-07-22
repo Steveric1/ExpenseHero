@@ -3,6 +3,74 @@
 
 
 {% block content %}
+
+<style>
+    .card1 {
+        background-color: rgb(25, 76, 179);
+    }
+
+    .card2 {
+        background-color: rgb(159, 163, 171);
+    }
+
+    .card3 {
+        background-color: rgb(21, 161, 86);
+    }
+
+    .card4 {
+        background-color: rgb(24, 139, 168);
+    }
+
+    .display {
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .custom-hr {
+        border: none;
+    }
+    
+    h5, h6 {
+        color: white;
+        font-size: 13px;
+    }
+
+    .box {
+		border: 1px solid white;
+		padding: 10px;
+		background-color: white;
+		border-radius: 5px;
+        color: black;
+	}
+
+
+
+    .chart-container {
+        width: 100%;
+    }
+    
+    .card-body1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 17px;
+   }
+   
+   .index {
+        width: 100%;
+        height: 100%;
+    }
+    
+    canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+
+</style>
+
+
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-10">
@@ -22,9 +90,91 @@
     </div>
 </div>
 
-<div style="width: 500px; height: 500px;">
-    <canvas id="myChart"></canvas>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="card">
+				<div class="card-body card1">
+					<div class="display c">
+						<h5>TODAY</h5>
+						<h5 class="box" id="today-number"></h5>
+					</div>
+					<hr class="custom-hr">
+                    <img src="{% static 'img/cashloogo.png' %}" width="40px" height="35px" />                
+					<h6 id="todays-total-income"></h6>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="col-md-3">
+			<div class="card">
+				<div class="card-body card2">
+					<div class="display">
+						<h5>THIS WEEK</h5>
+						<h5 class="box" id="week-number"></h5>
+					</div>
+					<hr class="custom-hr">
+                    <img src="{% static 'img/cashloogo.png' %}" width="40px" height="35px" />  
+					<h6 id="totalWeekIncome"></h6>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="col-md-3">
+			<div class="card">
+				<div class="card-body card3">
+					<div class="display">
+						<h5>THIS MONTH</h5>
+						<h5 class="box" id="month-number"></h5>
+					</div>
+					<hr class="custom-hr">
+                    <img src="{% static 'img/cashloogo.png' %}" width="40px" height="35px" />  
+					<h6 id="totalMonthIncome"></h6>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="col-md-3">
+			<div class="card">
+				<div class="card-body card4">
+					<div class="display">
+						<h5>THIS YEAR</h5>
+						<h5 class="box" id="year-number"></h5>
+					</div>
+					<hr class="custom-hr">
+                    <img src="{% static 'img/cashloogo.png' %}" width="40px" height="35px" />  
+					<h6 id="totalYearIncome"></h6>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
+<div class="chart-container mt-4">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <div class="card-body card-body1">
+                    <div class="index">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="index">
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
   
 <script src="{% static 'js/incomestats.js' %}"></script>
 {% endblock %}

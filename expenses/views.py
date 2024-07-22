@@ -122,7 +122,6 @@ def expense_delete(request, id):
         return JsonResponse({'success': True})
     else:
         return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
-    
 
 
 # User expense summary
@@ -180,6 +179,107 @@ def expense_category_trend(request):
     return JsonResponse({'category_trend': category_trend}, safe=False)
 
 
+def expense_by_month(request):
+    todays_date = datetime.date.today()
+    start_of_year = datetime.date(todays_date.year, 1, 1)
+    expenses = Expense.objects.filter(
+        owner=request.user, date__gte=start_of_year, date__lte=todays_date)
+
+    # Initialize a dictionary for the monthly totals
+    monthly_expenses = {month: 0 for month in range(1, 13)}
+
+    # Aggregate the expenses by month
+    for expense in expenses:
+        month = expense.date.month
+        monthly_expenses[month] += expense.amount
+
+    # Format the result as a list of totals for each month
+    monthly_totals = [monthly_expenses[month] for month in range(1, 13)]
+
+    return JsonResponse({'monthly_totals': monthly_totals}, safe=False)
+
+
+def expense_of_week(request):
+    todays_date = datetime.date.today()
+    year, week, _ = todays_date.isocalendar()
+
+    # Calculate the start and end of the current week
+    start_of_week = datetime.date.fromisocalendar(year, week, 1)
+    end_of_week = start_of_week + datetime.timedelta(days=6)
+
+    expenses = Expense.objects.filter(
+        owner=request.user, date__gte=start_of_week, date__lte=end_of_week)
+    # Initialize a dictionary for the weekly totals
+    weekly_expense = {day: 0 for day in range(1, 8)}
+
+    # Aggregate the expenses by day
+    for expense in expenses:
+        day = expense.date.isoweekday()
+        weekly_expense[day] += expense.amount
+
+    # Format the result as a list of totals for each day
+    weekly_totals = [weekly_expense[day] for day in range(1, 8)]
+
+    return JsonResponse({'weekly_totals': weekly_totals}, safe=False)
+
+
+def total_expense_of_the_day(request):
+    todays_date = datetime.date.today()
+    expenses = Expense.objects.filter(owner=request.user, date=todays_date)
+
+    total_expenses = 0
+    for expense in expenses:
+        total_expenses += expense.amount
+
+    return JsonResponse({'today_total_expenses': total_expenses}, safe=False)
+
+
+def total_expense_of_the_week(request):
+    todays_date = datetime.date.today()
+    year, week, _ = todays_date.isocalendar()
+
+    start_of_week = datetime.date.fromisocalendar(year, week, 1)
+    end_of_week = start_of_week + datetime.timedelta(days=6)
+
+    expenses = Expense.objects.filter(
+        owner=request.user, date__gte=start_of_week, date__lte=end_of_week)
+
+    total_week_expense = 0
+
+    for expense in expenses:
+        total_week_expense += expense.amount
+
+    return JsonResponse({'total_week_expense': total_week_expense}, safe=False)
+
+
+def total_expense_of_the_month(request):
+    todays_date = datetime.date.today()
+    month = todays_date.month
+    year = todays_date.year
+    expenses = Expense.objects.filter(
+        owner=request.user, date__year=year, date__month=month)
+
+    total_month_expense = 0
+
+    for expense in expenses:
+        total_month_expense += expense.amount
+
+    return JsonResponse({'total_month_expense': total_month_expense}, safe=False)
+
+
+def total_expense_of_the_year(request):
+    todays_date = datetime.date.today()
+    year = todays_date.year
+    expenses = Expense.objects.filter(owner=request.user, date__year=year)
+    
+    total_year_expense = 0
+    
+    for expense in expenses:
+        total_year_expense += expense.amount
+    
+    return JsonResponse({'total_year_expense': total_year_expense}, safe=False)
+
+
 def stats_view(request):
     return render(request, "expenses/stats.html")
 
@@ -201,7 +301,6 @@ def export_csv(request):
                         expense.category, expense.date])
 
     return response
-
 
 
 # View that implement how to download expsenses in excel

@@ -9,6 +9,8 @@ const emailSuccessOutput = document.querySelector(".emailSuccessOutput");
 const showPasswordToggle = document.querySelector(".showPasswordToggle");
 const passwordField = document.getElementById('passwordField');
 const submitBtn = document.querySelector('.submit-btn input[type="submit"]');
+const passwordFeedBackArea = document.querySelector('.invalid-password-feedback');
+// const passwordInput = document.querySelector('.password');
 
 
 if (usernameField) {
@@ -64,8 +66,40 @@ if (emailField) {
                     submitBtn.removeAttribute('disabled');
                 }
             })
+        } else {
+            emailField.classList.remove('is-invalid');
+            emailFeedBackArea.style.display = "none";
         }
     }) 
+}
+
+
+if (passwordField) {
+    passwordField.addEventListener('keyup', (event) => {
+        const passwordVal = event.target.value;
+
+        if (passwordVal.length > 0) {
+            fetch('/authentication/validate-password', {
+                body: JSON.stringify({ password: passwordVal }),
+                method: 'POST'
+            }).then((res) => res.json())
+            .then(data =>{
+                if (data.password_error) {
+                    submitBtn.disabled = true;
+                    passwordField.classList.add('is-invalid');
+                    passwordFeedBackArea.style.display = "block"
+                    passwordFeedBackArea.innerHTML = `<p>${data.password_error}</p>`;
+                } else {
+                    passwordField.classList.remove('is-invalid');
+                    passwordFeedBackArea.style.display = "none";
+                    submitBtn.removeAttribute('disabled');
+                }
+            })
+        } else {
+            passwordField.classList.remove('is-invalid');
+            passwordFeedBackArea.style.display = "none";
+        }
+    });
 }
 
 
@@ -80,3 +114,4 @@ const handlePasswordToggle = (event) => {
     }
 }
 showPasswordToggle.addEventListener('click', handlePasswordToggle);
+

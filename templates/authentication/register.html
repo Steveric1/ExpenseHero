@@ -4,11 +4,6 @@
 
 {% block content %}
 
-<style>
-    .form-control::placeholder {
-        opacity: 0.3;
-    }
-</style>
 
 <div class="centered-container">
     <div class="row">
@@ -60,6 +55,9 @@
                             />
                            <small class="float-end py-3 showPasswordToggle ">SHOW</small>
                         </div>
+                        <div class="invalid-password-feedback invalid-feedback" style="display: none;"></div>
+                        <!-- <p class="text-sn text-success emailSuccessOutput"></p> -->
+
                         <div class="justify-content-center submit-btn">
                             <input type="submit" value="Register" class="btn btn-primary w-100" id="register" style="border-radius: 15px;"/>
                         </div>
@@ -75,7 +73,6 @@
 </div>
 
 
-<!-- <script src="{% static 'js/main.js' %}"></script> -->
 <script src="{% static 'js/register.js' %}"></script>
 
 {% endblock content %} 
